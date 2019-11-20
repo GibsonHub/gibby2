@@ -18,15 +18,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
 import { MatOption, MatRippleModule } from '@angular/material/core';
+import { ImageCropperComponent } from './tools/image-cropper/image-cropper.component';
 
 
 const components = [
   ShellComponent,
   DeleteButtonComponent,
   SideMenuComponent,
+  ImageCropperComponent,
 ];
 
 const modules = [
@@ -48,11 +52,13 @@ const modules = [
   MatRippleModule,
   MatSelectModule,
   FormsModule,
+  ImageCropperModule,
 ];
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    ImageCropperComponent
   ],
   imports: [
     ...modules,

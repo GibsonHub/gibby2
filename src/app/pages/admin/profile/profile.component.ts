@@ -28,13 +28,19 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  imageCallback(img) {
+    console.log('Callback!!!!');
+    console.log(img);
+    this.currentProfile.PhotoUrl = img;
+  }
+
   saveProfile(evt) {
-    console.log(evt);
-    console.log(this.currentProfile);
+    //console.log(evt);
+    //console.log(this.currentProfile);
     this._profileSerice.update(this.currentProfile).catch((err) => {
       console.log('Error:', err);
     }).then((d) => {
-      console.log('Saved!');
+      //console.log('Saved!');
       this.snackBar.open('Saved!', 'OK', {
         duration: 5000
       });

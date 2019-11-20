@@ -1,28 +1,8 @@
+<mat-list *ngIf="currentProfile" class="profile-card-stack">
 
-
-<mat-grid-list cols="2">
-    <mat-grid-tile>
-        <mat-list>
-            <mat-list-item>
-                <h3>
-                    Logged In: 
-                    <span *ngIf="afAuth.authState | async as user">
-                    {{ user.email }}
-                    </span>
-                </h3>
-            </mat-list-item>
-            <mat-list-item>
-                <div class="current-profile" *ngIf="currentProfile">
-                    <img [src]="currentProfile.PhotoUrl" >
-                </div>
-            </mat-list-item>
-        </mat-list>
+    <mat-card>
         
-        
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <!-- <form #profileForm class="profile-input-form"> -->
-        <div class="profile-form-container" *ngIf="currentProfile">
+        <div class="profile-form-container">
             <input matInput [(ngModel)]="currentProfile.id" name="id">
             <input matInput [(ngModel)]="currentProfile.UserID" name="UserID">
 
@@ -49,7 +29,7 @@
             <mat-form-field>
                 <input matInput placeholder="Photo URL" [(ngModel)]="currentProfile.PhotoUrl" name="PhotoUrl">
             </mat-form-field>
-            
+
             <mat-form-field>
                 <textarea matInput placeholder="Notes" [(ngModel)]="currentProfile.Notes" name="Notes"></textarea>
             </mat-form-field>
@@ -61,9 +41,14 @@
                 </mat-select>
             </mat-form-field>
 
-            <button mat-button (click)="saveProfile($event)">Save</button>
-            
         </div>
-    <!-- </form> -->
-    </mat-grid-tile>
-</mat-grid-list>
+
+    </mat-card>
+
+    <mat-card>
+        <button mat-button (click)="saveProfile($event)">Save</button>
+    </mat-card>
+    <mat-card>
+        <app-image-cropper [croppedImage]="currentProfile.PhotoUrl" (croppedCallbackEvent)="imageCallback($event)"></app-image-cropper>
+    </mat-card>
+</mat-list>
