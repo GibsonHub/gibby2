@@ -1,0 +1,16 @@
+.profile-form-container{
+    display: flex;
+    flex-direction: column;
+    clear: both;
+    width: 100%;
+    padding-right: 10px;
+}
+
+
+.profile-form-container > *{
+    width: 100%;
+}
+
+.profile-input-form{
+    width: 100%;
+}

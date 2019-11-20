@@ -1,11 +1,69 @@
-<h1>
-    Logged In: 
-    <span *ngIf="afAuth.authState | async as user">
-        {{ user.email }}
-    </span>
-</h1>
 
-<div class="current-profile" *ngIf="currentProfile">
-    Current Profile: 
-    <img [src]="currentProfile.PhotoUrl" alt="">
-</div>
+
+<mat-grid-list cols="2">
+    <mat-grid-tile>
+        <mat-list>
+            <mat-list-item>
+                <h3>
+                    Logged In: 
+                    <span *ngIf="afAuth.authState | async as user">
+                    {{ user.email }}
+                    </span>
+                </h3>
+            </mat-list-item>
+            <mat-list-item>
+                <div class="current-profile" *ngIf="currentProfile">
+                    <img [src]="currentProfile.PhotoUrl" >
+                </div>
+            </mat-list-item>
+        </mat-list>
+        
+        
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <!-- <form #profileForm class="profile-input-form"> -->
+        <div class="profile-form-container" *ngIf="currentProfile">
+            <input matInput [(ngModel)]="currentProfile.id" name="id">
+            <input matInput [(ngModel)]="currentProfile.UserID" name="UserID">
+
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="currentProfile.Email" name="Email">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <input matInput placeholder="Display Name" [(ngModel)]="currentProfile.DisplayName" name="DisplayName">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="First Name" [(ngModel)]="currentProfile.FirstName" name="FirstName">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Middle Name" [(ngModel)]="currentProfile.MiddleName" name="MiddleName">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Last Name" [(ngModel)]="currentProfile.LastName" name="LastName">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Photo URL" [(ngModel)]="currentProfile.PhotoUrl" name="PhotoUrl">
+            </mat-form-field>
+            
+            <mat-form-field>
+                <textarea matInput placeholder="Notes" [(ngModel)]="currentProfile.Notes" name="Notes"></textarea>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-select placeholder="Select" [(ngModel)]="currentProfile.SpecialAccess" name="SpecialAccess">
+                    <mat-option value="false">No</mat-option>
+                    <mat-option value="true">Yes</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-button (click)="saveProfile($event)">Save</button>
+            
+        </div>
+    <!-- </form> -->
+    </mat-grid-tile>
+</mat-grid-list>

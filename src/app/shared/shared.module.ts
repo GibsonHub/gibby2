@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,14 +15,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatFormFieldControl, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
+import { MatOption, MatRippleModule } from '@angular/material/core';
+
 
 const components = [
   ShellComponent,
   DeleteButtonComponent,
-  SideMenuComponent
+  SideMenuComponent,
 ];
 
 const modules = [
@@ -39,6 +44,10 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatSnackBarModule,
+  MatGridListModule,
+  MatRippleModule,
+  MatSelectModule,
+  FormsModule,
 ];
 
 @NgModule({
@@ -54,6 +63,9 @@ const modules = [
   ],
   providers: [
     ProfileService
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class SharedModule {}

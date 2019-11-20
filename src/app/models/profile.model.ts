@@ -9,4 +9,6 @@ export interface ProfileModel {
     MiddleName?: string;
     BirthDate?: Date;
     PhotoUrl?: string;
+    Notes?: string;
+    SpecialAccess?: boolean;
 }
