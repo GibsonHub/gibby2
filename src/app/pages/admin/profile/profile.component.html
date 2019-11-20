@@ -4,3 +4,8 @@
         {{ user.email }}
     </span>
 </h1>
+
+<div class="current-profile" *ngIf="currentProfile">
+    Current Profile: 
+    <img [src]="currentProfile.PhotoUrl" alt="">
+</div>

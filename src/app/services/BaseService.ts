@@ -7,9 +7,11 @@ import { map } from 'rxjs/operators';
 export abstract class BaseService<T extends IBaseEntity> implements IBaseService<T> {
 
     protected collection: AngularFirestoreCollection<T>;
+    protected cloudTableName: string;
   
     constructor(path: string, protected afs: AngularFirestore) {
-        this.collection = this.afs.collection(path);
+        this.cloudTableName = path;
+        this.collection = this.afs.collection(this.cloudTableName);
     }
 
     get(identifier: string): Observable<T> {
@@ -28,6 +30,20 @@ export abstract class BaseService<T extends IBaseEntity> implements IBaseService
                     }
                 })
             );
+    }
+
+    getBy(fieldName: string, operatorValue: firebase.firestore.WhereFilterOp, search: string) {
+        return this.afs.collection('profiles').ref.where(fieldName, operatorValue, search).get().then((snap) => {
+            return snap.docs.map((doc) => {
+              //console.log(doc);
+              const rest = doc.data();
+              //console.log(rest);
+              const ret = { id: doc.id, ...rest };
+              console.log(ret);
+              return ret;
+            });
+            
+          });
     }
 
     // getByUserID(identifier: string): Observable<T> {
