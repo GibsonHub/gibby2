@@ -1,3 +1,16 @@
 <app-shell>
-    <router-outlet></router-outlet>
+    <mat-drawer-container>
+            <!-- <mat-drawer mode="side" opened class="app-sidemenu-onoff">On/Off</mat-drawer> -->
+            
+            <mat-drawer mode="push" [opened]="sideNavOpened" class="app-side-menu" (openedChange)="onOpenedChange($event)">
+                Drawer content
+                <button mat-raised-button routerLink="/profile">Profile</button>
+                <a *ngIf="sideNavOpened" mat-button color="primary" class="side-nav-cancel" (click)="sideNavOpened = !sideNavOpened">Close</a>
+            </mat-drawer>
+            <mat-drawer-content>
+                <router-outlet></router-outlet>
+            </mat-drawer-content>
+            
+    </mat-drawer-container>
+    <a *ngIf="!sideNavOpened" mat-button color="primary" class="side-nav-toggle" (click)="sideNavOpened = !sideNavOpened">Options</a>
 </app-shell>

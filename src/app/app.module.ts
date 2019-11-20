@@ -16,11 +16,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { ProfileComponent } from './pages/admin/profile/profile.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

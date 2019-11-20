@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  sideNavOpened: boolean = false;
+
   constructor() {}
+
+  onOpenedChange(evt) {
+    this.sideNavOpened = evt;
+  }
 }

@@ -75,7 +75,9 @@ export class EmailLoginComponent implements OnInit {
 
     try {
       if (this.isLogin) {
-        await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+        await this.afAuth.auth.signInWithEmailAndPassword(email, password).then((e) => {
+          console.log('LOGGED');
+        });
       }
       if (this.isSignup) {
         await this.afAuth.auth.createUserWithEmailAndPassword(email, password);

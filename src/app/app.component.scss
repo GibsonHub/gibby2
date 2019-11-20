@@ -1,0 +1,12 @@
+.app-side-menu{
+    width: 400px;
+    height: 100vh;
+    margin: 0;
+    border: 1px solid #555;
+}
+
+.side-nav-toggle{
+    position: absolute;
+    top: 66px;
+    z-index: 999;
+}

@@ -1,0 +1,6 @@
+<h1>
+    Logged In: 
+    <span *ngIf="afAuth.authState | async as user">
+        {{ user.email }}
+    </span>
+</h1>
