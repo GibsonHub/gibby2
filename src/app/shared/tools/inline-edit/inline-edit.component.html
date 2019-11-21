@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()" class="inline-edit-control">
+    <div class="mat-subheading-2">Edit Value</div>
+
+    <mat-form-field>
+        <input matInput maxLength="140" name="dataVal" [(ngModel)]="dataVal">
+        <mat-hint align="end">{{dataVal?.length || 0}}/140</mat-hint>
+    </mat-form-field>
+
+    <div class="actions">
+        <button mat-button type="button" color="primary" (click)="onCancel()">CANCEL</button>
+        <button mat-button type="submit" color="primary">SAVE</button>
+    </div>
+</form>

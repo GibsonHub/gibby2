@@ -14,3 +14,25 @@
 .profile-input-form{
     width: 100%;
 }
+
+.profile-card-stack .mat-card{
+    margin: 10px;
+
+}
+
+.all-profiles{
+    width: 100%;
+}
+
+.selected, .unselected {
+    -webkit-user-select: none; /* Webkit  */
+    -moz-user-select:    none; /* Firefox */
+    -ms-user-select:     none; /* IE 10   */
+    -o-user-select:      none; /* Opera   */
+    user-select:         none;
+  }
+
+  .editable-sat-cell{
+    font-weight: normal;
+    font-size: 12px;
+  }
