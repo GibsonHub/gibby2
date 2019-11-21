@@ -51,4 +51,61 @@
     <mat-card>
         <app-image-cropper [croppedImage]="currentProfile.PhotoUrl" (croppedCallbackEvent)="imageCallback($event)"></app-image-cropper>
     </mat-card>
+    <mat-card *ngIf="(currentProfile.SpecialAccess == 'true') && allProfiles">
+        <table mat-table [dataSource]="dataSource" class="all-profiles">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                    [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)"
+                                    [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="UserID">
+                <th mat-header-cell *matHeaderCellDef> UserID </th>
+                <td mat-cell *matCellDef="let element"> {{element.UserID}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="DisplayName">
+                <th mat-header-cell *matHeaderCellDef> Display Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.DisplayName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="FirstName">
+                <th mat-header-cell *matHeaderCellDef> First Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="LastName">
+                <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="MiddleName">
+                <th mat-header-cell *matHeaderCellDef> Middle Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.MiddleName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="BirthDate">
+                <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.BirthDate}} </td>
+            </ng-container>
+            <ng-container matColumnDef="SpecialAccess">
+                <th mat-header-cell *matHeaderCellDef> Special Access </th>
+                <td mat-cell *matCellDef="let element"> {{element.SpecialAccess}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+            </tr>
+        </table>
+    </mat-card>
 </mat-list>

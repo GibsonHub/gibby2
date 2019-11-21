@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
@@ -24,6 +25,7 @@ import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
 import { MatOption, MatRippleModule } from '@angular/material/core';
 import { ImageCropperComponent } from './tools/image-cropper/image-cropper.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 const components = [
@@ -53,6 +55,8 @@ const modules = [
   MatSelectModule,
   FormsModule,
   ImageCropperModule,
+  MatTableModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core'
 import { ProfileService } from 'src/app/services/profile.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {SelectionModel} from '@angular/cdk/collections';
+import {MatTableDataSource} from '@angular/material/table';
 
 import { ProfileModel } from 'src/app/models/profile.model';
 
@@ -13,30 +15,40 @@ import { ProfileModel } from 'src/app/models/profile.model';
 export class ProfileComponent implements OnInit {
   @Input()
   currentProfile: ProfileModel;
+  allProfiles: Array<ProfileModel>;
+  okToCreateProfile: boolean = true;
+
+  displayedColumns: string[] = ['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess'];
+  selection = new SelectionModel<ProfileModel>(true, []);
+  dataSource: any;
 
   constructor(private snackBar: MatSnackBar, private _profileSerice: ProfileService, public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    //this._profileSerice.createTestRecord('123', 'jeffy-test-1');
-    //this._profileSerice.updateOrCreate(this.afAuth);
+    
     this.afAuth.user.subscribe((u) => {
-      this._profileSerice.updateOrCreate(u).then((result) => {
-        this.currentProfile = result;
-      }).catch((err) => {
-        console.log('ERROR', err);
-      });
+      if (this.okToCreateProfile) {
+        this.okToCreateProfile = false;
+        
+        this._profileSerice.updateOrCreate(u).then((result) => {
+          this.currentProfile = result;
+          if (this.currentProfile.SpecialAccess) {
+            this.fetchSpecialAccess();
+          }
+        }).catch((err) => {
+          console.log('ERROR updateOrCreate(u)', err);
+        });
+      }
+      
     });
   }
 
   imageCallback(img) {
-    console.log('Callback!!!!');
-    console.log(img);
     this.currentProfile.PhotoUrl = img;
   }
 
   saveProfile(evt) {
-    //console.log(evt);
-    //console.log(this.currentProfile);
+    //this.currentProfile.SpecialAccess = (this.currentProfile.SpecialAccess.valueOf.toString() == 'true');
     this._profileSerice.update(this.currentProfile).catch((err) => {
       console.log('Error:', err);
     }).then((d) => {
@@ -48,4 +60,32 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 
+  fetchSpecialAccess() {
+    this._profileSerice.list().subscribe((records) => {
+      this.dataSource = new MatTableDataSource<ProfileModel>(records);
+      this.allProfiles = records;
+      
+    });
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: ProfileModel): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
 }
