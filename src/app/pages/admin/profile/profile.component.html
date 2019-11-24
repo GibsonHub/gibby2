@@ -140,6 +140,14 @@
     </mat-card> -->
 
     <mat-card *ngIf="(currentProfile.SpecialAccess == 'true' || currentProfile.SpecialAccess === true) && allProfiles">
-        <app-editable-table (inlineEditRecord)="catchInlineEditProfile($event)" [dataSource]="createDataSource()" [displayedColumns]="['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess']"></app-editable-table>
+        <app-profile-edit-grid [dataSource]="createDataSource()" [displayedColumns]="['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess']"></app-profile-edit-grid>
     </mat-card>
+
+    <!-- <mat-card *ngIf="(currentProfile.SpecialAccess == 'true' || currentProfile.SpecialAccess === true) && allProfiles">
+        <app-editable-table (inlineEditRecord)="catchInlineEditProfile($event)" [dataSource]="createDataSource()" [displayedColumns]="['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess']"></app-editable-table>
+    </mat-card> -->
+
+    <!-- <mat-card>
+        <app-inplace-edit-grid></app-inplace-edit-grid>
+    </mat-card> -->
 </mat-list>

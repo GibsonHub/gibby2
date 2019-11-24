@@ -8,6 +8,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import { ProfileModel } from 'src/app/models/profile.model';
 import { MouseMeta } from 'src/app/models/mouse-meta.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ProfileDataSource } from 'src/app/shared/tools/profile-edit-grid/profile.datasource';
+import { CustomDataSource } from 'src/app/shared/tools/inplace-edit-grid/custom.datasource';
 
 @Component({
   selector: 'app-profile',
@@ -74,7 +76,12 @@ export class ProfileComponent implements OnInit {
   }
 
   createDataSource() {
-    return this.dataSource;
+    //return this.dataSource;
+    //return new ProfileDataSource(this.allProfiles);
+    const ds = new ProfileDataSource(this.allProfiles);
+    //console.log(ds);
+    return ds;
+    
   }
   fetchSpecialAccess() {
     this._profileSerice.list().subscribe((records) => {

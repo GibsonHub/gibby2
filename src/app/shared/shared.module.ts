@@ -29,6 +29,8 @@ import { ImageCropperComponent } from './tools/image-cropper/image-cropper.compo
 import { MatTableModule } from '@angular/material/table';
 import { InlineEditComponent } from './tools/inline-edit/inline-edit.component';
 import { EditableTableComponent } from './tools/editable-table/editable-table.component';
+import { InplaceEditGridComponent } from './tools/inplace-edit-grid/inplace-edit-grid.component';
+import { ProfileEditGridComponent } from './tools/profile-edit-grid/profile-edit-grid.component';
 
 
 const components = [
@@ -38,6 +40,8 @@ const components = [
   ImageCropperComponent,
   InlineEditComponent,
   EditableTableComponent,
+  InplaceEditGridComponent,
+  ProfileEditGridComponent,
 ];
 
 const modules = [
@@ -70,7 +74,9 @@ const modules = [
     ...components,
     ImageCropperComponent,
     InlineEditComponent,
-    EditableTableComponent
+    EditableTableComponent,
+    InplaceEditGridComponent,
+    ProfileEditGridComponent
   ],
   imports: [
     ...modules,

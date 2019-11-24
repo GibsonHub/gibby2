@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<div style="padding: 32px">
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" class="inplace-edit-grid">
+
+        <!-- <ng-container matColumnDef="UserID">
+            <th mat-header-cell *matHeaderCellDef> User ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.UserID}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+        </ng-container>
+        
+        
+        <ng-container matColumnDef="DisplayName">
+            <th mat-header-cell *matHeaderCellDef> Display Name </th>
+            <td mat-cell *matCellDef="let element" [satPopoverAnchor]="p" (click)="p.open()">
+                <ng-container *ngIf="element.DisplayName">
+                    {{element.DisplayName}}
+                </ng-container>
+                <span class="editable-sat-cell" *ngIf="!element.DisplayName">
+                    Add a Display Name
+                </span>
+                <sat-popover #p
+                    hasBackdrop
+                    xAlign="start"
+                    yAlign="start"
+                    (closed)="update(element, $event)">
+                    <inline-edit [value]="element.DisplayName"></inline-edit>
+                </sat-popover>
+            </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="FirstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="LastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="MiddleName">
+            <th mat-header-cell *matHeaderCellDef> Middle Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.MiddleName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="BirthDate">
+            <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.BirthDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="SpecialAccess">
+            <th mat-header-cell *matHeaderCellDef> Special Access </th>
+            <td mat-cell *matCellDef="let element"> {{element.SpecialAccess}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+    
+        <ng-container *ngFor="let dc of displayedColumns">
+            <ng-container *ngIf="dc != 'select'" matColumnDef="{{dc}}">
+                <th mat-header-cell *matHeaderCellDef> {{dc}} </th>
+                <td mat-cell *matCellDef="let element; let i = index" [satPopoverAnchor]="p" (click)="p.open()">
+                    <ng-container>
+                        {{element[dc]}}
+                    </ng-container>
+                    <sat-popover #p
+                        hasBackdrop
+                        xAlign="start"
+                        yAlign="start"
+                        (closed)="update(element, $event, dc)">
+                        <inline-edit [value]="element[dc]"></inline-edit>
+                    </sat-popover>
+                </td>
+            </ng-container>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+
+</div>
