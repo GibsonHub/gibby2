@@ -85,7 +85,9 @@ export class ProfileComponent implements OnInit {
 
   saveProfile(evt) {
     console.log(evt);
-    
+    this._profileSerice.update(this.currentProfile).then((e) => {
+      this.snackBar.open('Saved current profile!');
+    });
   }
 
 }
