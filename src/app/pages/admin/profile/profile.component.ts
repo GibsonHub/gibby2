@@ -83,4 +83,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  saveProfile(evt) {
+    console.log(evt);
+    
+  }
+
 }
