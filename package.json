@@ -32,6 +32,7 @@
     "@angular/pwa": "^0.803.2",
     "@angular/router": "~8.2.3",
     "@angular/service-worker": "~8.2.3",
+    "@ncstate/sat-popover": "^4.0.0",
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
     "@nestjs/ng-universal": "^2.0.1",

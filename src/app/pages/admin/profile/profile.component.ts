@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Input, HostListener } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,6 +6,8 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 
 import { ProfileModel } from 'src/app/models/profile.model';
+import { MouseMeta } from 'src/app/models/mouse-meta.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -18,11 +20,24 @@ export class ProfileComponent implements OnInit {
   allProfiles: Array<ProfileModel>;
   okToCreateProfile: boolean = true;
 
-  displayedColumns: string[] = ['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess'];
-  selection = new SelectionModel<ProfileModel>(true, []);
+  // displayedColumns: string[] = ['select', 'UserID', 'Email', 'DisplayName', 'FirstName', 'LastName', 'MiddleName', 'BirthDate', 'SpecialAccess'];
+  // selection = new SelectionModel<ProfileModel>(true, []);
   dataSource: any;
 
-  constructor(private snackBar: MatSnackBar, private _profileSerice: ProfileService, public afAuth: AngularFireAuth) { }
+
+  // tableMouseDown: MouseMeta;
+  // tableMouseUp: MouseMeta;
+  // FIRST_EDITABLE_ROW: number = 0;
+  // LAST_EDITABLE_ROW: number;
+  // FIRST_EDITABLE_COL: number = 1;                       // first column pos is not editable --> so start from index 1
+  // LAST_EDITABLE_COL: number = this.displayedColumns.length - 1; // = 3
+  // newCellValue: string = '';
+  // selectedCellsState: boolean[][];
+  // private dataSubject = new BehaviorSubject<Element[]>([]);
+
+  constructor(private snackBar: MatSnackBar, private _profileSerice: ProfileService, public afAuth: AngularFireAuth) {
+    //this.dataSubject.next([]);
+  }
 
   ngOnInit() {
     
@@ -43,49 +58,29 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  catchInlineEditProfile(obj) {
+    if (!obj['updateEventParam'] || (obj['updateEventParam'] == '') || !obj['currentColumnMeta'] ) { return false; }
+    console.log('CATCH:', obj);
+    const rowIndex = obj['currentColumnMeta']['row'];
+    const colName = obj['currentColumnMeta']['name'];
+    console.log(rowIndex, colName);
+    if ((rowIndex < 0) || (colName == '') || (colName == 'select')) { return false; }
+    this.allProfiles[rowIndex][colName] = obj['updateEventParam'];
+    //this.allProfiles[obj['currentColumnMeta']['row']]
+  }
+
   imageCallback(img) {
     this.currentProfile.PhotoUrl = img;
   }
 
-  saveProfile(evt) {
-    //this.currentProfile.SpecialAccess = (this.currentProfile.SpecialAccess.valueOf.toString() == 'true');
-    this._profileSerice.update(this.currentProfile).catch((err) => {
-      console.log('Error:', err);
-    }).then((d) => {
-      //console.log('Saved!');
-      this.snackBar.open('Saved!', 'OK', {
-        duration: 5000
-      });
-    });
-    return false;
+  createDataSource() {
+    return this.dataSource;
   }
-
   fetchSpecialAccess() {
     this._profileSerice.list().subscribe((records) => {
       this.dataSource = new MatTableDataSource<ProfileModel>(records);
       this.allProfiles = records;
-      
     });
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: ProfileModel): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
 }

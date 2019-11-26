@@ -20,12 +20,15 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SatPopoverModule } from '@ncstate/sat-popover';
 
 import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
 import { MatOption, MatRippleModule } from '@angular/material/core';
 import { ImageCropperComponent } from './tools/image-cropper/image-cropper.component';
 import { MatTableModule } from '@angular/material/table';
+import { InlineEditComponent } from './tools/inline-edit/inline-edit.component';
+import { EditableTableComponent } from './tools/editable-table/editable-table.component';
 
 
 const components = [
@@ -33,6 +36,8 @@ const components = [
   DeleteButtonComponent,
   SideMenuComponent,
   ImageCropperComponent,
+  InlineEditComponent,
+  EditableTableComponent,
 ];
 
 const modules = [
@@ -57,12 +62,15 @@ const modules = [
   ImageCropperModule,
   MatTableModule,
   MatCheckboxModule,
+  SatPopoverModule,
 ];
 
 @NgModule({
   declarations: [
     ...components,
-    ImageCropperComponent
+    ImageCropperComponent,
+    InlineEditComponent,
+    EditableTableComponent
   ],
   imports: [
     ...modules,
