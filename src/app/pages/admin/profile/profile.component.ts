@@ -65,8 +65,14 @@ export class ProfileComponent implements OnInit {
     const colName = obj['currentColumnMeta']['name'];
     console.log(rowIndex, colName);
     if ((rowIndex < 0) || (colName == '') || (colName == 'select')) { return false; }
+    console.log('before:', this.allProfiles[rowIndex][colName]);
     this.allProfiles[rowIndex][colName] = obj['updateEventParam'];
+    console.log('after:', this.allProfiles[rowIndex][colName]);
     //this.allProfiles[obj['currentColumnMeta']['row']]
+
+    this._profileSerice.update(this.currentProfile).then((e) => {
+      this.snackBar.open('Saved current profile!');
+    });
   }
 
   imageCallback(img) {
