@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { interval } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 
 import { ChatRoomService } from 'src/app/services/chatroom.service';
 import { ChatService } from 'src/app/services/chat.service';
@@ -24,6 +24,8 @@ export class ChattingComponent implements OnInit {
   currentRoom: ChatRoom;
   messages: ChatMessage[];
 
+  observableMessages: Observable<ChatMessage>[];
+
   constructor(private _roomService: ChatRoomService, private _chatService: ChatService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -37,6 +39,15 @@ export class ChattingComponent implements OnInit {
     poller.subscribe(n => {
       this.updateMessageList();
     });
+
+    // this._chatService.collection.valueChanges().subscribe((data) => {
+    //   console.log('changed', data);
+    //   this.messages = data;
+    // });
+
+    // this._chatService.list().subscribe((list) => {
+    //   console.log('changed', list);
+    // });
   }
 
   updateMessageList() {

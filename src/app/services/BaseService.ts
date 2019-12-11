@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 export abstract class BaseService<T extends IBaseEntity> implements IBaseService<T> {
 
-    protected collection: AngularFirestoreCollection<T>;
+    public collection: AngularFirestoreCollection<T>;
     protected cloudTableName: string;
   
     constructor(path: string, protected afs: AngularFirestore) {

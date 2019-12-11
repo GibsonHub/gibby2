@@ -18,7 +18,7 @@ export class ChatService extends BaseService<ChatMessage> {
   }
 
   getByRoom(roomId: string) {
-    return this.afs.collection('game_chat_message').ref.where('roomId', '==', roomId).orderBy('timestamp', 'asc').get().then((snap) => {
+    return this.afs.collection(this.cloudTableName).ref.where('roomId', '==', roomId).orderBy('timestamp', 'asc').get().then((snap) => {
         return snap.docs.map((doc) => {
           const rest = doc.data();
           const ret = { id: doc.id, ...rest };
