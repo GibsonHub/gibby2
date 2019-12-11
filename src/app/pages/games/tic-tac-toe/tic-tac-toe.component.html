@@ -1,0 +1,15 @@
+<p>tic-tac-toe works!</p>
+
+<button mat-raised-button routerLink="/games/tictactoe/create" >New Game</button>
+
+<div *ngIf="allGames as list">
+    Game list below: {{list.length}}
+    <ul>
+        <li *ngFor="let game of list">
+            <a routerLink="/games/tictactoe/play/{{game.id}}" class="btn">{{game.name}}</a>
+        </li>
+    </ul>
+</div>
+<div *ngIf="!allGames">
+    No games...
+</div>

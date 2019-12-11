@@ -1,0 +1,36 @@
+<p>create-tic-tac-toe works!</p>
+
+<mat-card>
+    <div>
+      <h3>Create Game</h3>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="name"
+          type="text"
+          placeholder="Game Name"
+          autocomplete="off"
+        />
+
+      </mat-form-field>
+  
+      <
+  
+      <mat-error class="server-error">{{ serverMessage }}</mat-error>
+  
+      <button
+        *ngIf="true"
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  
+  </mat-card>
+  

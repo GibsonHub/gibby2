@@ -1,0 +1,46 @@
+<h1>
+    Current:
+    <span *ngIf="currentRoom">{{currentRoom.name}}</span>
+</h1>
+
+<mat-card>
+    <div *ngIf="!messages || !messages.length">
+        No messages...
+    </div>
+    <div *ngIf="messages && messages.length">
+        <ul class="chat-message-list">
+            <li class="chat-message" *ngFor="let msg of messages">
+                {{msg.body}}
+            </li>
+        </ul>
+    </div>
+    
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+        <input
+            matInput
+            formControlName="body"
+            type="text"
+            placeholder="Message"
+            autocomplete="off"
+        />
+
+        </mat-form-field>
+    
+        <
+    
+        <mat-error class="server-error">{{ serverMessage }}</mat-error>
+    
+        <button
+        *ngIf="true"
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="form.invalid"
+        >
+        Send
+        </button>
+    </form>
+    
+</mat-card>

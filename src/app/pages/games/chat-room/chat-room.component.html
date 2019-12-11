@@ -1,0 +1,16 @@
+<h1>CR</h1>
+<div class="rooms-panel">
+    <button mat-raised-button routerLink="/games/chat-room/create" >New Room</button>
+</div>
+<div *ngIf="!rooms">
+    No rooms
+</div>
+<div class="chat-rooms" *ngIf="rooms">
+    <ul>
+        <li *ngFor="let room of rooms">
+            <a mat-menu-item routerLink="/games/chat-room/chatting/{{room.id}}" >
+                <span>Join <strong>{{room.name}}</strong></span>
+            </a>
+        </li>
+    </ul>
+</div>

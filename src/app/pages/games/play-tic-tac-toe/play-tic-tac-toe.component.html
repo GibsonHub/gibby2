@@ -1,0 +1,9 @@
+<p>G works!</p>
+
+<div *ngIf="currentGame as game">
+    <h2>Playing: {{game.name}}</h2>
+    <h3>Player {{game.playerNumber}}'s Turn</h3>
+</div>
+<div *ngIf="!currentGame">
+    Oops, game not available.
+</div>

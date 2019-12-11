@@ -17,6 +17,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { TicTacToeComponent } from './pages/games/tic-tac-toe/tic-tac-toe.component';
+import { CreateTicTacToeComponent } from './pages/games/create-tic-tac-toe/create-tic-tac-toe.component';
+import { PlayTicTacToeComponent } from './pages/games/play-tic-tac-toe/play-tic-tac-toe.component';
+import { ChatRoomComponent } from './pages/games/chat-room/chat-room.component';
+import { CreatechatComponent } from './pages/games/chat-room/createchat/createchat.component';
+import { ChattingComponent } from './pages/games/chat-room/chatting/chatting.component';
 
 
 @NgModule({
@@ -24,6 +30,12 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
     AppComponent,
     HomePageComponent,
     ProfileComponent,
+    TicTacToeComponent,
+    CreateTicTacToeComponent,
+    PlayTicTacToeComponent,
+    ChatRoomComponent,
+    CreatechatComponent,
+    ChattingComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

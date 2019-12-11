@@ -1,5 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -59,6 +59,7 @@ const modules = [
   MatRippleModule,
   MatSelectModule,
   FormsModule,
+  ReactiveFormsModule,
   ImageCropperModule,
   MatTableModule,
   MatCheckboxModule,
