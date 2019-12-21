@@ -4,6 +4,7 @@
             
             <mat-drawer mode="push" [opened]="sideNavOpened" class="app-side-menu" (openedChange)="onOpenedChange($event)">
                 Drawer content
+                
                 <button mat-raised-button routerLink="/profile" (click)="sideNavOpened = !sideNavOpened">Profile</button>
                 <a *ngIf="sideNavOpened" mat-button color="primary" class="side-nav-cancel" (click)="sideNavOpened = !sideNavOpened">Close</a>
             </mat-drawer>
