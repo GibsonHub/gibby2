@@ -29,6 +29,7 @@ import { ImageCropperComponent } from './tools/image-cropper/image-cropper.compo
 import { MatTableModule } from '@angular/material/table';
 import { InlineEditComponent } from './tools/inline-edit/inline-edit.component';
 import { EditableTableComponent } from './tools/editable-table/editable-table.component';
+import { MdToHtmlPipe } from './pipes/md-to-html.pipe';
 
 
 const components = [
@@ -71,7 +72,8 @@ const modules = [
     ...components,
     ImageCropperComponent,
     InlineEditComponent,
-    EditableTableComponent
+    EditableTableComponent,
+    MdToHtmlPipe,
   ],
   imports: [
     ...modules,

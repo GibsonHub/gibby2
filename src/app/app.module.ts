@@ -23,6 +23,7 @@ import { PlayTicTacToeComponent } from './pages/games/play-tic-tac-toe/play-tic-
 import { ChatRoomComponent } from './pages/games/chat-room/chat-room.component';
 import { CreatechatComponent } from './pages/games/chat-room/createchat/createchat.component';
 import { ChattingComponent } from './pages/games/chat-room/chatting/chatting.component';
+import { TopNavComponent } from './shared/navigation/top-nav/top-nav.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ChattingComponent } from './pages/games/chat-room/chatting/chatting.com
     ChatRoomComponent,
     CreatechatComponent,
     ChattingComponent,
+    TopNavComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

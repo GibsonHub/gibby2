@@ -1,4 +1,6 @@
+
 <mat-sidenav-container class="sidenav-container">
+  
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -24,8 +26,10 @@
 
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo" routerLink="/">🔥 Angular gibby2</span>
-
+      <app-top-nav></app-top-nav>
+      <!-- <span class="logo" routerLink="/">🔥 Angular gibby2</span> -->
+      
+      
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
         <!-- <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
@@ -46,6 +50,9 @@
       <mat-menu #menu="matMenu">
           <a mat-menu-item routerLink="/games/chat-room" >
             <span>Chat</span>
+          </a>
+          <a *ngFor="let menu of contentfulNavigation" mat-menu-item class="contentful-nav" routerLink="/{{menu.path}}">
+            {{ menu.label }}
           </a>
          
         <!-- <a mat-menu-item href="https://fireship.page.link/slack">

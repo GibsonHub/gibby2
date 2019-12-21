@@ -1,8 +1,10 @@
 import { fbaseConfig } from './gibby2';
+import { contentfulConfig } from './contentful';
 
 export const environment = {
   production: false,
-  firebase:  fbaseConfig
+  firebase:  fbaseConfig,
+  contentful: contentfulConfig,
 };
 
 /*
