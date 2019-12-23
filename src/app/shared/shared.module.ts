@@ -22,6 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SatPopoverModule } from '@ncstate/sat-popover';
 
+import { QuillModule } from 'ngx-quill';
+
 import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
 import { MatOption, MatRippleModule } from '@angular/material/core';
@@ -30,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InlineEditComponent } from './tools/inline-edit/inline-edit.component';
 import { EditableTableComponent } from './tools/editable-table/editable-table.component';
 import { MdToHtmlPipe } from './pipes/md-to-html.pipe';
+import { ContentfulPageComponent } from '../pages/contentful-page/contentful-page.component';
 
 
 const components = [
@@ -39,6 +42,7 @@ const components = [
   ImageCropperComponent,
   InlineEditComponent,
   EditableTableComponent,
+  ContentfulPageComponent,
 ];
 
 const modules = [
@@ -65,6 +69,7 @@ const modules = [
   MatTableModule,
   MatCheckboxModule,
   SatPopoverModule,
+  QuillModule,
 ];
 
 @NgModule({

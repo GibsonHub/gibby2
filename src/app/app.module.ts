@@ -10,11 +10,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 // Firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { QuillModule } from 'ngx-quill';
 
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { TicTacToeComponent } from './pages/games/tic-tac-toe/tic-tac-toe.component';
@@ -49,6 +53,9 @@ import { TopNavComponent } from './shared/navigation/top-nav/top-nav.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FormsModule,
+    ReactiveFormsModule,
+    QuillModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

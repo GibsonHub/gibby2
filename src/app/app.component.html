@@ -1,4 +1,4 @@
-<app-shell>
+<app-shell (topNavSelected)="onTopNavSelected($event)">
     <mat-drawer-container class="mat-drawer-container">
             <!-- <mat-drawer mode="side" opened class="app-sidemenu-onoff">On/Off</mat-drawer> -->
             
@@ -15,3 +15,4 @@
     </mat-drawer-container>
     <a *ngIf="!sideNavOpened" mat-button color="primary" class="side-nav-toggle" (click)="sideNavOpened = !sideNavOpened">Options</a>
 </app-shell>
+

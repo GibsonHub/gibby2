@@ -51,7 +51,7 @@
           <a mat-menu-item routerLink="/games/chat-room" >
             <span>Chat</span>
           </a>
-          <a *ngFor="let menu of contentfulNavigation" mat-menu-item class="contentful-nav" routerLink="/{{menu.path}}">
+          <a *ngFor="let menu of contentfulNavigation" mat-menu-item class="contentful-nav" (click)="topNavSelected($event, menu)" routerLink="/view/{{menu.path}}/{{menu.contentId}}/{{menu.view}}">
             {{ menu.label }}
           </a>
          
