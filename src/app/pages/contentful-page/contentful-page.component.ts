@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ContentfulService } from 'src/app/services/contentful.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
+
+import { ContentfulService } from 'src/app/services/contentful.service';
+import { IndependantExchangeService } from 'src/app/services/independant-exchange.service';
 
 @Component({
   selector: 'app-contentful-page',
@@ -16,7 +17,7 @@ export class ContentfulPageComponent implements OnInit {
 
   contentfulFields: any;
 
-  constructor(private route: ActivatedRoute, public afAuth: AngularFireAuth, private contentful: ContentfulService) { }
+  constructor(private route: ActivatedRoute, public afAuth: AngularFireAuth, private contentful: ContentfulService, private exchangeService: IndependantExchangeService) { }
 
   ngOnInit() {
     //console.log(this.route.snapshot.paramMap);
@@ -26,20 +27,28 @@ export class ContentfulPageComponent implements OnInit {
 
     this.loadPage(this.contentfulId);
 
+    this.exchangeService.contentfulSubject.subscribe((obj) => {
+      this.pageChanged(obj);
+    });
+
   }
 
   loadPage(id: string){
     this.contentfulId = id;
     this.contentful.getContent(this.contentfulId).then((r) => {
       this.contentfulFields = r.fields;
-      console.log('done', this.contentfulFields);
+      //console.log('done', this.contentfulFields);
     }).catch((err) => {
       console.log(err);
     });
   }
 
   pageChanged(obj) {
-    console.log('pageChanged: ', obj);
+    //console.log('pageChanged: ', obj);
+    if (obj && obj['contentId']){
+      this.loadPage(obj['contentId']);
+    }
+    
   }
 
 }

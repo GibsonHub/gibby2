@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { globalSubjects } from './shared/global.subjects';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,9 +11,6 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    globalSubjects.contentfulSubject.subscribe((evt) => {
-      console.log('app.component observed change to contentfulSubject');
-    });
   }
 
   onOpenedChange(evt) {
