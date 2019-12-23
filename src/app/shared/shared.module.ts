@@ -22,6 +22,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SatPopoverModule } from '@ncstate/sat-popover';
 
+import { QuillModule } from 'ngx-quill';
+
 import { ProfileService } from '../services/profile.service';
 import { SideMenuComponent } from './navigation/side-menu/side-menu.component';
 import { MatOption, MatRippleModule } from '@angular/material/core';
@@ -67,6 +69,7 @@ const modules = [
   MatTableModule,
   MatCheckboxModule,
   SatPopoverModule,
+  QuillModule,
 ];
 
 @NgModule({
