@@ -9,9 +9,11 @@ import { PlayTicTacToeComponent } from './pages/games/play-tic-tac-toe/play-tic-
 import { ChatRoomComponent } from './pages/games/chat-room/chat-room.component';
 import { CreatechatComponent } from './pages/games/chat-room/createchat/createchat.component';
 import { ChattingComponent } from './pages/games/chat-room/chatting/chatting.component';
+import { ContentfulPageComponent } from './pages/contentful-page/contentful-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'view/:name/:id/:view', component: ContentfulPageComponent },
   { path: 'games/tictactoe', component: TicTacToeComponent },
   { path: 'games/tictactoe/create', component: CreateTicTacToeComponent },
   { path: 'games/tictactoe/play/:id', component: PlayTicTacToeComponent },

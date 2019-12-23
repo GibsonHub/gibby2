@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { ContentfulService } from 'src/app/services/contentful.service';
+import { globalSubjects } from '../global.subjects';
 
 @Component({
   selector: 'app-shell',
@@ -13,6 +14,8 @@ import { ContentfulService } from 'src/app/services/contentful.service';
 })
 export class ShellComponent implements OnInit {
   contentfulNavigation: any;
+  
+  navSelectEmit: EventEmitter<any>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
     .pipe(
@@ -28,6 +31,15 @@ export class ShellComponent implements OnInit {
       console.log('nav', result.fields['jsonObject'].topNavigation);
       $me.contentfulNavigation = result.fields['jsonObject'].topNavigation;
     });
+  }
+
+  
+  topNavSelected(evt, menuItem) {
+    console.log('topNavSelected', menuItem);
+    this.navSelectEmit = new EventEmitter<any>();
+    this.navSelectEmit.emit(menuItem);
+
+    globalSubjects.contentfulSubject.source = new Observable<any>();
   }
 
 }

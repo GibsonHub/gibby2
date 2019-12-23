@@ -30,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InlineEditComponent } from './tools/inline-edit/inline-edit.component';
 import { EditableTableComponent } from './tools/editable-table/editable-table.component';
 import { MdToHtmlPipe } from './pipes/md-to-html.pipe';
+import { ContentfulPageComponent } from '../pages/contentful-page/contentful-page.component';
 
 
 const components = [
@@ -39,6 +40,7 @@ const components = [
   ImageCropperComponent,
   InlineEditComponent,
   EditableTableComponent,
+  ContentfulPageComponent,
 ];
 
 const modules = [

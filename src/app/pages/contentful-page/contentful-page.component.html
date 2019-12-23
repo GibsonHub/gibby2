@@ -1,0 +1,9 @@
+<div class="waiting-for-contentful" *ngIf="!contentfulFields" (topNavSelected)="pageChanged($event)">
+    fetching...
+</div>
+<div class="contentful-complete" *ngIf="contentfulFields">
+    <h2>{{contentfulFields.title}}</h2>
+    <div *ngIf="contentfulFields.body" class="contentful-body" [innerHTML]="contentfulFields.body | mdToHtml" >
+        {{contentfulFields.body | mdToHtml}}
+    </div>
+</div>
